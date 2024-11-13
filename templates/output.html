@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        /* Embedded CSS for styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        .result-container {
+            background: #fff;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            max-width: 400px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .prediction {
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <h2>Prediction Result</h2>
+        <p>The predicted weather condition is: <span id="prediction" class="prediction"></span></p>
+        <a href="/">Go back</a>
+    </div>
+
+    <script>
+        // JavaScript to map prediction numbers to labels
+        const predictionMapping = {
+            0: "drizzle",
+            1: "fog",
+            2: "rain",
+            3: "snow",
+            4: "sun"
+        };
+
+        // Get the prediction value from the Flask template rendering (numeric prediction)
+        const predictionValue = {{ prediction }}; // This should be passed as a numeric value from Flask
+
+        // Convert the numeric prediction to a string label using the mapping
+        const predictionLabel = predictionMapping[predictionValue];
+
+        // Display the label in the HTML
+        document.getElementById("prediction").textContent = predictionLabel || "Unknown";
+    </script>
+</body>
+</html>
+
